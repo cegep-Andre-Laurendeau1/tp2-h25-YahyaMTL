@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface DVDRepository {
     void save (DVD dvd);
-    DVD findById(long id);
+    DVD findById(Long id);
     List<DVD> findByYear(int annee);
-    DVD findByTitle(String titre);
+    DVD findByTitre(String titre);
     DVD findByDirector(String directeur);
 }

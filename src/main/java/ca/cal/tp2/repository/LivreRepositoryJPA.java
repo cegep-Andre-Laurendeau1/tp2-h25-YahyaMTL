@@ -14,19 +14,17 @@ public class LivreRepositoryJPA implements LivreRepository {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2");
 
     public void save(Livre livre) {
-        try {
-            EntityManager em = emf.createEntityManager();
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(livre);
             em.getTransaction().commit();
-            em.close();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Livre findById(long id) {
+    public Livre findById(Long id) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Livre> query = em.createNamedQuery("SELECT id FROM livre" + "WHERE id = :id", Livre.class);
         query.setParameter("id", id);

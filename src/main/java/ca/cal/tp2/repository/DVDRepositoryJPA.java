@@ -13,19 +13,17 @@ public class DVDRepositoryJPA implements DVDRepository {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2");
 
     public void save(DVD dvd) {
-        try {
-            EntityManager em = emf.createEntityManager();
+        try (EntityManager em = emf.createEntityManager()){
             em.getTransaction().begin();
             em.persist(dvd);
             em.getTransaction().commit();
-            em.close();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public DVD findById(long id) {
+    public DVD findById(Long id) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<DVD> query = em.createNamedQuery("SELECT id FORM DVD" + "WHERE id = :id", DVD.class);
         query.setParameter("id", id);
@@ -49,7 +47,7 @@ public class DVDRepositoryJPA implements DVDRepository {
         return query.getResultList().get(0);
     }
 
-    public DVD findByTitle (String titre) {
+    public DVD findByTitre(String titre) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<DVD> query = em.createNamedQuery("SELECT titre FROM DVD" +
                 " WHERE titre = :titre", DVD.class);

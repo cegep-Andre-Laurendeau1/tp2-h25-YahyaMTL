@@ -13,26 +13,24 @@ public class CDRepositoryJPA implements CDRepository {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2");
 
     public void save(CD cd) {
-        try {
-            EntityManager em = emf.createEntityManager();
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(cd);
             em.getTransaction().commit();
-            em.close();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public CD findById(long id) {
+    public CD findById(Long id) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<CD> query = em.createNamedQuery("SELECT id FROM CD" + "WHERE id = :id", CD.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
-    public CD findByTitle(String titre) {
+    public CD findByTitre(String titre) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<CD> query = em.createNamedQuery("SELECT titre FROM CD " + "WHERE titre LIKE :titre", CD.class);
         query.setParameter("titre", "%" + titre + "%");
