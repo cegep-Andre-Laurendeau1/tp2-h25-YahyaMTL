@@ -16,13 +16,17 @@ public class EmprunteurService {
     private final CDRepositoryJPA cdRepository;
     private final DVDRepository dvdRepository;
 
-    public EmprunteurService(EmprunteurRepositoryJPA emprunteurRepository, EmpruntRepositoryJPA empruntRepository,
+    public EmprunteurService(EmprunteurRepositoryJPA emprunteurRepository,
                     LivreRepositoryJPA livreRepository, CDRepositoryJPA cdRepository, DVDRepository dvdRepository) {
 
         this.emprunteurRepository = emprunteurRepository;
         this.livreRepository = livreRepository;
         this.cdRepository = cdRepository;
         this.dvdRepository = dvdRepository;
+    }
+
+    public void saveEmprunteur(Long id, String nom,  String numeroTelephone, String email, String motDePasse) {
+        emprunteurRepository.save(new Emprunteur(id, nom, numeroTelephone, email, motDePasse));
     }
 
    public Emprunteur getEmprunteur(Long id) {
@@ -43,12 +47,14 @@ public class EmprunteurService {
 
        tempDoc = cdRepository.findById(id);
        if (tempDoc != null && tempDoc.obtenirDateRetour() == 2L) {
-            doc = tempDoc;        }
+            doc = tempDoc;
+       }
 
        tempDoc = dvdRepository.findById(id);
        if (tempDoc != null && tempDoc.obtenirDateRetour() == 1L) {
             doc = tempDoc;
         }
+       
         if (doc == null) {
             throw new RuntimeException("Il n'existe aucun document avec ces critères.");
         }
