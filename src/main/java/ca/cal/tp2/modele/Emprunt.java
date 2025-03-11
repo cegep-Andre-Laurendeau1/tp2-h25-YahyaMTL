@@ -23,7 +23,7 @@ public class Emprunt {
     private LocalDate dateEmprunt;
     private String status;
 
-    @OneToMany(mappedBy = "empruntDetail", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "emprunt", cascade = CascadeType.MERGE)
     private List<EmpruntDetail> documents;
 
     @ManyToOne

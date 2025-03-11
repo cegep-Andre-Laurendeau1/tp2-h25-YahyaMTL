@@ -36,4 +36,15 @@ public class Livre extends Document {
         tempsEmprunt = 3L;
         return tempsEmprunt;
     }
+
+    @Override
+    public String toString() {
+        return  "ID : " + super.getId() + "\n" +
+                "Titre : " + super.getTitre() + "\n" +
+                "Nombre d'exemplaires : " + super.getNbExemplaires() + "\n" +
+                "ISBN : " + numISBN + "\n" +
+                "Auteur : " + auteur + "\n" +
+                "Éditeur : " + editeur + "\n" +
+                "Nombre de pages : " + nbPages + "\n";
+    }
 }

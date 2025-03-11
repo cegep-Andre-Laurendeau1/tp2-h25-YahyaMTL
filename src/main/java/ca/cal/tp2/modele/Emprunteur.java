@@ -24,4 +24,13 @@ public class Emprunteur extends Utilisateur {
     public Emprunteur(Long id, String nom,  String numeroTelephone, String email, String motDePasse) {
         super(id, nom, numeroTelephone, email, motDePasse);
     }
+
+    @Override
+    public String toString() {
+        return  "ID : " + super.getId() + "\n" +
+                "Nom : " + super.getNom() + "\n" +
+                "Téléphone : " + super.getNumeroTelephone() + "\n" +
+                "Email : " + super.getEmail() + "\n" +
+                "Mot de passe : " + super.getMotDePasse();
+    }
 }

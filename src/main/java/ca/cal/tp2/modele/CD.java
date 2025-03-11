@@ -34,4 +34,14 @@ public class CD extends Document {
         tempsEmprunt = 2L;
         return tempsEmprunt;
     }
+
+    @Override
+    public String toString() {
+        return  "ID : " + super.getId() + "\n" +
+                "Titre : " + super.getTitre() + "\n" +
+                "Nombre d'exemplaires : " + super.getNbExemplaires() + "\n" +
+                "Artiste : " + artiste + "\n" +
+                "Durée : " + duree + " minutes" + "\n" +
+                "Nombre de pages : " + genre + "\n";
+    }
 }

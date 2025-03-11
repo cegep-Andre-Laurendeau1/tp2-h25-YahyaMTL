@@ -32,4 +32,12 @@ public class EmpruntDetail {
         this.document = document;
         this.dateRetourPrevue = LocalDate.now().plusWeeks(document.obtenirDateRetour());
     }
+
+    @Override
+    public String toString() {
+        return
+                "Document(s) emprunté(s) : " + document.getTitre() + "\n" +
+                "Status : " + status + "\n" +
+                "Date de retour : " + dateRetourPrevue + "\n";
+    }
 }
