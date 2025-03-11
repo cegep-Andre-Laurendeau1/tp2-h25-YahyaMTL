@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 
 public abstract class Document {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "document_id")
     private Long id;
     private String titre;

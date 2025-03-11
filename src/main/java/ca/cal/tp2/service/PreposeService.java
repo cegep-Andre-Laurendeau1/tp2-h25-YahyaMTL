@@ -79,8 +79,8 @@ public class PreposeService {
         return dvdRepository.findByTitre(titre);
     }
 
-    public DVD getDVDByArtist (String artiste) {
-        return dvdRepository.findByDirector(artiste);
+    public DVD getDVDByDirector(String directeur) {
+        return dvdRepository.findByDirector(directeur);
     }
 
     public List<DVD> getDVDByYear (int annee) {
