@@ -3,6 +3,9 @@ package ca.cal.tp2.modele;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -18,4 +21,5 @@ public abstract class Document {
     private long id;
     private String titre;
     private int nbExemplaires;
+    private LocalDate datePublication;
 }
