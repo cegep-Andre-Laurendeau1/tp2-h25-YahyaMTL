@@ -14,9 +14,11 @@ public class Livre extends Document {
     private String auteur;
     private String editeur;
     private int nbPages;
+    private int tempsEmprunt;
+
 
     public Livre(long id, String titre, int nombreExemplaires,
-                 String numISBN, String auteur, String editeur, int nbPages) {
+                 String numISBN, String auteur, String editeur, int nbPages, int tempsEmprunt) {
         super();
         setId(id);
         setTitre(titre);
@@ -25,5 +27,6 @@ public class Livre extends Document {
         this.auteur = auteur;
         this.editeur = editeur;
         this.nbPages = nbPages;
+        this.tempsEmprunt = tempsEmprunt;
     }
 }

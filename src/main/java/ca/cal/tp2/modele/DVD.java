@@ -13,9 +13,11 @@ public class DVD extends Document {
     private String directeur;
     private int duree;
     private String rating;
+    private int tempsEmprunt;
+
 
     public DVD(long id, String titre, int nombreExemplaires,
-               String directeur, int duree, String rating) {
+               String directeur, int duree, String rating, int tempsEmprunt) {
         super();
         setId(id);
         setTitre(titre);
@@ -23,6 +25,7 @@ public class DVD extends Document {
         this.directeur = directeur;
         this.duree = duree;
         this.rating = rating;
+        this.tempsEmprunt = tempsEmprunt;
     }
 
 }

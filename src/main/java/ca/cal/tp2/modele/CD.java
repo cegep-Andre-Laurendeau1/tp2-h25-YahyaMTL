@@ -13,9 +13,11 @@ public class CD extends Document {
     private String artiste;
     private int duree;
     private String genre;
+    private int tempsEmprunt;
+
 
     public CD(long id, String titre, int nombreExemplaires,
-              String artiste, int duree, String genre) {
+              String artiste, int duree, String genre, int tempsEmprunt) {
         super();
         setId(id);
         setTitre(titre);
@@ -23,5 +25,6 @@ public class CD extends Document {
         this.artiste = artiste;
         this.duree = duree;
         this.genre = genre;
+        this.tempsEmprunt = tempsEmprunt;
     }
 }
