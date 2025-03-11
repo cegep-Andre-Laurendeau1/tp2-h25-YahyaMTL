@@ -40,4 +40,13 @@ public class Emprunt {
         empruntDetail.setEmprunt(this);
         this.documents.add(empruntDetail);
     }
+
+    @Override
+    public String toString() {
+        return "ID de l'emprunteur : " + id + "\n" +
+                "Date d'emprunt : " + dateEmprunt + "\n" +
+                "Status : " + status + "\n" +
+                "Emprunteur : " + emprunteur.getNom() + "\n" +
+                "Documents empruntés : " +  documents.size() + "\n";
+    }
 }

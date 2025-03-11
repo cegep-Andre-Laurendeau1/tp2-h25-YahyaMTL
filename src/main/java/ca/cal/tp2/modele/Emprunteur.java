@@ -27,10 +27,10 @@ public class Emprunteur extends Utilisateur {
 
     @Override
     public String toString() {
-        return  "ID : " + super.getId() + "\n" +
+        return  "Identifiant de l'emprunteur : " + super.getId() + "\n" +
                 "Nom : " + super.getNom() + "\n" +
                 "Téléphone : " + super.getNumeroTelephone() + "\n" +
                 "Email : " + super.getEmail() + "\n" +
-                "Mot de passe : " + super.getMotDePasse();
+                "Mot de passe : " + super.getMotDePasse() + "\n";
     }
 }
