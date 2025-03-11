@@ -10,7 +10,7 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 
 public class EmpruntRepositoryJPA implements EmpruntRepository {
-      EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2PU");
+      EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2");
 
       public void save(Emprunt emprunt, EmpruntDetail empruntDetail, List<Document> documents) {
           try (EntityManager em = emf.createEntityManager()) {

@@ -25,33 +25,32 @@ public class DVDRepositoryJPA implements DVDRepository {
 
     public DVD findById(Long id) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<DVD> query = em.createNamedQuery("SELECT id FORM DVD" + "WHERE id = :id", DVD.class);
+        TypedQuery<DVD> query = em.createQuery("SELECT d FROM DVD d WHERE d.id = :id", DVD.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
     public List<DVD> findByYear (int annee) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<DVD> query = em.createNamedQuery("SELECT datePublication FROM DVD"
-                + "WHERE datePublication BETWEEN :anneeDebut AND :anneeFin", DVD.class);
+        TypedQuery<DVD> query = em.createQuery("SELECT d FROM DVD d "
+                + "WHERE d.datePublication BETWEEN :anneeDebut AND :anneeFin", DVD.class);
         query.setParameter("anneeDebut", LocalDate.of(annee, 1, 1));
         query.setParameter("anneeFin", LocalDate.of(annee, 12, 31));
         return query.getResultList();
     }
 
-    public DVD findByDirector (String director) {
+    public DVD findByDirector (String directeur) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<DVD> query = em.createNamedQuery("SELECT directeur FROM DVD" +
-                " WHERE directeur.directeur = :director", DVD.class);
-        query.setParameter("director", director);
-        return query.getResultList().get(0);
+        TypedQuery<DVD> query = em.createQuery("SELECT d FROM DVD d " +
+                "WHERE d.directeur = :directeur", DVD.class);
+        query.setParameter("directeur", directeur);
+        return query.getSingleResult();
     }
 
     public DVD findByTitre(String titre) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<DVD> query = em.createNamedQuery("SELECT titre FROM DVD" +
-                " WHERE titre = :titre", DVD.class);
-        query.setParameter("titre", titre);
-        return query.getResultList().get(0);
+        TypedQuery<DVD> query = em.createQuery("SELECT d FROM DVD d WHERE d.titre LIKE :titre", DVD.class);
+        query.setParameter("titre", "%" + titre + "%");
+        return query.getSingleResult();
     }
 }

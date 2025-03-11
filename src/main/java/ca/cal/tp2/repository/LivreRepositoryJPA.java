@@ -26,15 +26,15 @@ public class LivreRepositoryJPA implements LivreRepository {
 
     public Livre findById(Long id) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Livre> query = em.createNamedQuery("SELECT id FROM livre" + "WHERE id = :id", Livre.class);
+        TypedQuery<Livre> query = em.createQuery("SELECT l FROM Livre l WHERE l.id = :id", Livre.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
     public List<Livre> findByYear(int annee) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Livre> query = em.createNamedQuery("SELECT datePublication FROM livre" +
-                "WHERE datePublication BETWEEN :anneeDebut AND :anneeFin", Livre.class);
+        TypedQuery<Livre> query = em.createQuery("SELECT l FROM Livre l WHERE l.datePublication " +
+                                                    "BETWEEN :anneeDebut AND :anneeFin", Livre.class);
         query.setParameter("anneeDebut", LocalDate.of(annee, 1, 1));
         query.setParameter("anneeFin", LocalDate.of(annee, 12, 31));
         return query.getResultList();
@@ -42,17 +42,15 @@ public class LivreRepositoryJPA implements LivreRepository {
 
     public Livre findByTitle(String titre) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery <Livre> query = em.createNamedQuery("SELECT titre FROM livre" +
-                "WHERE titre LIKE :titre", Livre.class);
+        TypedQuery <Livre> query = em.createQuery("SELECT l FROM Livre l WHERE l.titre LIKE :titre", Livre.class);
         query.setParameter("titre", "%" + titre + "%");
-        return query.getResultList().get(0);
+        return query.getSingleResult();
     }
 
     public Livre findByAuthor(String auteur) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Livre> query = em.createNamedQuery("SELECT auteur FROM livre" +
-                "WHERE auteur = :auteur", Livre.class);
+        TypedQuery<Livre> query = em.createQuery("SELECT l FROM Livre l WHERE l.auteur = :auteur", Livre.class);
         query.setParameter("auteur", auteur);
-        return query.getResultList().get(0);
+        return query.getSingleResult();
     }
 }
