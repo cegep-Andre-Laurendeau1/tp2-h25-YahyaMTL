@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CDRepository {
     void save(CD cd);
-    CD findById(int id);
+    CD findById(long id);
     List<CD> findByYear(int annee);
     CD findByTitle(String titre);
     CD findByArtist(String artiste);
