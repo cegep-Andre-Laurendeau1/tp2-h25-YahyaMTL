@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import java.time.LocalDate;
@@ -27,4 +29,15 @@ public class Emprunt {
     @ManyToOne
     @JoinColumn
     private Emprunteur emprunteur;
+
+    public void ajouterEmprunt(Document document) {
+        if (this.documents == null) {
+            this.documents = new ArrayList<>();
+        }
+
+        this.dateEmprunt = LocalDate.now();
+        EmpruntDetail empruntDetail = new EmpruntDetail();
+        empruntDetail.setEmprunt(this);
+        this.documents.add(empruntDetail);
+    }
 }

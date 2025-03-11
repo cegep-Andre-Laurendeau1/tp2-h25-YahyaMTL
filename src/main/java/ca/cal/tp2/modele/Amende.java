@@ -17,7 +17,7 @@ public class Amende {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "amende_id")
-    private long id;
+    private Long id;
     private double montant;
     private LocalDate dateCreation;
     private boolean status;

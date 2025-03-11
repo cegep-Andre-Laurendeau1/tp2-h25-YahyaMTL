@@ -14,11 +14,11 @@ public class Livre extends Document {
     private String auteur;
     private String editeur;
     private int nbPages;
-    private int tempsEmprunt;
+    private Long tempsEmprunt;
 
 
-    public Livre(long id, String titre, int nombreExemplaires,
-                 String numISBN, String auteur, String editeur, int nbPages, int tempsEmprunt) {
+    public Livre(Long id, String titre, int nombreExemplaires,
+                 String numISBN, String auteur, String editeur, int nbPages, Long tempsEmprunt) {
         super();
         setId(id);
         setTitre(titre);
@@ -27,6 +27,13 @@ public class Livre extends Document {
         this.auteur = auteur;
         this.editeur = editeur;
         this.nbPages = nbPages;
-        this.tempsEmprunt = tempsEmprunt;
+        this.tempsEmprunt = obtenirDateRetour();
+    }
+
+    public Long obtenirDateRetour() {
+        /*  Retourne le nombre de semaines d'emprunt.
+            Ici, vu que c'est un livre, la durée est de trois semaines. */
+        tempsEmprunt = 3L;
+        return tempsEmprunt;
     }
 }

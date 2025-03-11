@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -15,7 +14,7 @@ import java.util.Date;
 public class EmpruntDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn
@@ -29,8 +28,8 @@ public class EmpruntDetail {
     private String status;
 
 
-    public EmpruntDetail(Document document, Date dateRetourPrevue) {
+    public EmpruntDetail(Document document, LocalDate dateRetourPrevue) {
         this.document = document;
-        this.dateRetourPrevue = LocalDate.now().plusWeeks(2);
+        this.dateRetourPrevue = LocalDate.now().plusWeeks(document.obtenirDateRetour());
     }
 }

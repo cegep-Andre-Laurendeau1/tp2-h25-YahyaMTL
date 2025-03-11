@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -18,8 +17,18 @@ public abstract class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "document_id")
-    private long id;
+    private Long id;
     private String titre;
     private int nbExemplaires;
     private LocalDate datePublication;
+
+    public boolean estDisponible() {
+        return nbExemplaires > 0;
+    }
+
+    public void emprunterDocument() {
+        this.nbExemplaires--;
+    }
+
+    public abstract Long obtenirDateRetour();
 }

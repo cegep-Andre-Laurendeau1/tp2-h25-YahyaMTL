@@ -13,11 +13,11 @@ public class CD extends Document {
     private String artiste;
     private int duree;
     private String genre;
-    private int tempsEmprunt;
+    private Long tempsEmprunt;
 
 
-    public CD(long id, String titre, int nombreExemplaires,
-              String artiste, int duree, String genre, int tempsEmprunt) {
+    public CD(Long id, String titre, int nombreExemplaires,
+              String artiste, int duree, String genre, Long tempsEmprunt) {
         super();
         setId(id);
         setTitre(titre);
@@ -25,6 +25,13 @@ public class CD extends Document {
         this.artiste = artiste;
         this.duree = duree;
         this.genre = genre;
-        this.tempsEmprunt = tempsEmprunt;
+        this.tempsEmprunt = obtenirDateRetour();
+    }
+
+    public Long obtenirDateRetour() {
+        /*  Retourne le nombre de semaines d'emprunt.
+            Ici, vu que c'est un CD, la durée est de deux semaines. */
+        tempsEmprunt = 2L;
+        return tempsEmprunt;
     }
 }
