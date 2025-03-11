@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -20,8 +21,16 @@ public class EmpruntDetail {
     @JoinColumn
     private Emprunt emprunt;
 
-    private Date dateRetourPrevue;
-    private Date dateRetourActuelle;
+    @ManyToOne
+    private Document document;
+
+    private LocalDate dateRetourPrevue;
+    private LocalDate dateRetourActuelle;
     private String status;
-    private long documentId;
+
+
+    public EmpruntDetail(Document document, Date dateRetourPrevue) {
+        this.document = document;
+        this.dateRetourPrevue = LocalDate.now().plusWeeks(2);
+    }
 }
