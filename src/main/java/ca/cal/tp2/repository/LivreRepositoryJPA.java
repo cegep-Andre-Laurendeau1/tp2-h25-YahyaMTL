@@ -1,6 +1,5 @@
 package ca.cal.tp2.repository;
 
-import ca.cal.tp2.modele.CD;
 import ca.cal.tp2.modele.Livre;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

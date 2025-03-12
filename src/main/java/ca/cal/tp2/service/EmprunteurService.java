@@ -34,24 +34,19 @@ public class EmprunteurService {
    }
 
     public void emprunt(Emprunteur emprunteur, Long id) {
+        Document tempDoc = null;
         Document doc = null;
 
-        Document tempDoc = livreRepository.findById(id);
-        if (tempDoc != null && tempDoc.obtenirDateRetour() == 3L) {
+        if ((tempDoc = livreRepository.findById(id)) != null && tempDoc.obtenirDateRetour() == 3L) {
             doc = tempDoc;
         }
-
-        tempDoc = cdRepository.findById(id);
-        if (tempDoc != null && tempDoc.obtenirDateRetour() == 2L) {
+        else if ((tempDoc = cdRepository.findById(id)) != null && tempDoc.obtenirDateRetour() == 2L) {
             doc = tempDoc;
         }
-
-        tempDoc = dvdRepository.findById(id);
-        if (tempDoc != null && tempDoc.obtenirDateRetour() == 1L) {
+        else if ((tempDoc = dvdRepository.findById(id)) != null && tempDoc.obtenirDateRetour() == 1L) {
             doc = tempDoc;
         }
-
-        if (doc == null) {
+        else {
             throw new RuntimeException("Il n'existe aucun document avec ces critères.");
         }
 

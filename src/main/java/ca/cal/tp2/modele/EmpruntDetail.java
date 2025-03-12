@@ -17,7 +17,7 @@ public class EmpruntDetail {
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "emprunt_id")
     private Emprunt emprunt;
 
     @ManyToOne

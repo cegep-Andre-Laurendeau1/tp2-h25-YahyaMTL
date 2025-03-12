@@ -50,18 +50,12 @@ public class EmprunteurRepositoryJPA implements EmprunteurRepository {
     public List<Emprunt> listerEmprunts(Long id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery("SELECT e FROM Emprunt e " +
-                "WHERE e.emprunteur.id = :id", Emprunt.class);
+        TypedQuery<Emprunt> query = em.createQuery("SELECT e FROM Emprunt e LEFT JOIN FETCH e.documents " +
+                                                "WHERE e.emprunteur.id = :id", Emprunt.class);
         query.setParameter("id", id);
 
         List<Emprunt> emprunts = query.getResultList();
-
-        for (Emprunt emprunt : emprunts) {
-            Query queries = em.createQuery("SELECT e FROM EmpruntDetail e "
-                    + "WHERE e.id = :emprunt_id");
-            queries.setParameter("emprunt_id", emprunt.getId());
-            emprunt.setDocuments(queries.getResultList());
-        }
+        em.getTransaction().commit();
         return emprunts;
     }
 }

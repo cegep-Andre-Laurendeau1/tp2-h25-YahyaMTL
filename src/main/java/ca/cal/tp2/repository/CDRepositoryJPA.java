@@ -25,29 +25,29 @@ public class CDRepositoryJPA implements CDRepository {
 
     public CD findById(Long id) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<CD> query = em.createQuery("SELECT l FROM CD l WHERE l.id = :id", CD.class);
+        TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c WHERE c.id = :id", CD.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
     public CD findByTitre(String titre) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<CD> query = em.createQuery("SELECT l FROM CD l WHERE l.titre LIKE :titre", CD.class);
+        TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c WHERE c.titre LIKE :titre", CD.class);
         query.setParameter("titre", "%" + titre + "%");
         return query.getResultList().get(0);
     }
 
     public CD findByArtist(String artiste) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<CD> query = em.createQuery("SELECT l FROM CD l WHERE l.artiste = :artiste", CD.class);
+        TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c WHERE c.artiste = :artiste", CD.class);
         query.setParameter("artiste", artiste);
         return query.getResultList().get(0);
     }
 
     public List<CD> findByYear(int annee) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<CD> query = em.createQuery("SELECT l FROM CD l " +
-                "WHERE l.datePublication BETWEEN :anneeDebut AND :anneeFin", CD.class);
+        TypedQuery<CD> query = em.createQuery("SELECT c FROM CD c " +
+                "WHERE c.datePublication BETWEEN :anneeDebut AND :anneeFin", CD.class);
         query.setParameter("anneeDebut", LocalDate.of(annee, 1, 1));
         query.setParameter("anneeFin", LocalDate.of(annee, 12, 31));
         return query.getResultList();

@@ -24,21 +24,21 @@ public class Main {
         preposeService.saveLivre(1L, "Garfield #10", 4, "2895432295",
                 "Jim Davis", "Presses Aventure", 96, 3L);
 
-        preposeService.saveCD(1L, "Thriller", 3,
+        preposeService.saveCD(2L, "Thriller", 3,
                 "Michael Jackson", 42, "Pop", 2L);
 
-        preposeService.saveDVD(1L, "Pokémon The Movie : 2000", 2,
+        preposeService.saveDVD(3L, "Pokémon The Movie : 2000", 2,
                 "Kunihiko Yuyama", 102, "Excellent", 1L);
 
         System.out.println(preposeService.getLivreById(1L));
         System.out.println(preposeService.getLivreByAuthor("Jim Davis"));
         System.out.println(preposeService.getLivreByTitre("Garfield"));
 
-        System.out.println(preposeService.getCDById(1L));
+        System.out.println(preposeService.getCDById(2L));
         System.out.println(preposeService.getCDByTitre("Thril"));
         System.out.println(preposeService.getCDByArtist("Michael Jackson"));
 
-        System.out.println(preposeService.getDVDById(1L));
+        System.out.println(preposeService.getDVDById(3L));
         System.out.println(preposeService.getDVDByTitre("ok"));
         System.out.println(preposeService.getDVDByDirector("Kunihiko Yuyama"));
 

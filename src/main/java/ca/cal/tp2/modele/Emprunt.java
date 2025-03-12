@@ -24,7 +24,7 @@ public class Emprunt {
     private String status;
 
     @OneToMany(mappedBy = "emprunt", cascade = CascadeType.MERGE)
-    private List<EmpruntDetail> documents;
+    private List<EmpruntDetail> documents = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn
@@ -36,8 +36,10 @@ public class Emprunt {
         }
 
         this.dateEmprunt = LocalDate.now();
-        EmpruntDetail empruntDetail = new EmpruntDetail();
+        EmpruntDetail empruntDetail = new EmpruntDetail(document, LocalDate.now().plusWeeks(document.obtenirDateRetour()));
         empruntDetail.setEmprunt(this);
+        empruntDetail.setDocument(document);
+
         this.documents.add(empruntDetail);
     }
 
